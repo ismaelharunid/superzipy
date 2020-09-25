@@ -6,7 +6,7 @@ Iterate multiple iterable by row, with defaults and previous values.
 
 ```python
 from superzip import ziplus
-for (a, b, c) in ziplus(range(10), reversed(range(10)), "abcdef",
+for (a, b, c) in ziplus(range(10), reversed(range(1, 10)), "abcdef",
                         defaults=(None, None, ziplus.Previous)):
     print(a, b, c)
 
@@ -23,7 +23,7 @@ Renders.....
 6 3 f
 7 2 f
 8 1 f
-9 0 f
+9 None f
 
 ```
 
