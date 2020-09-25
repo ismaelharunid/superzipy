@@ -6,7 +6,8 @@ Iterate multiple iterable by row, with defaults and previous values.
 
 ```python
 from superzip import ziplus
-for (a, b, c) in ziplus(range(10), reversed(range(10)), "abcdef", defaults=(None, None, ziplus.Previous)):
+for (a, b, c) in ziplus(range(10), reversed(range(10)), "abcdef",
+                        defaults=(None, None, ziplus.Previous)):
     print(a, b, c)
 
 ```
