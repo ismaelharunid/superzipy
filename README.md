@@ -2,7 +2,8 @@
 Iterate multiple iterable by row, with defaults and previous values.
 
 
-Usage:Help on function ziplus in module superzip:
+# Usage
+
 ```python
 from superzip import ziplus
 for (a, b, c) in ziplus(range(10), reversed(range(10)), "abcdef", defaults=(None, None, ziplus.Previous)):
@@ -31,6 +32,8 @@ help(ziplus)
 
 Renders.....
 ```
+Help on function ziplus in module superzip:
+
 ziplus(*iterables, defaults=None, debug=False)
     Iterate multiple iterables by row, with defaults and previous values.
     
