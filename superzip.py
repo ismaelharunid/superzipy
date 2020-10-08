@@ -135,7 +135,7 @@ def ziplus(*iterables, defaults=None, debug=False):
             raise defaults[i]
         values.append(None if defaults[i] in (Previous, Repeat) else
                       defaults[i])
-    print("values", values, "repeat", repeat, "first")
+    #print("values", values, "repeat", repeat, "first")
     while n_stopped < n_items:
         if debug:
             print('row {:d}, {:d} of {:d} stopped, values: {:s}'
@@ -144,7 +144,7 @@ def ziplus(*iterables, defaults=None, debug=False):
             for i in i_items:
                 if defaults[i] is Repeat:
                     repeat[i].append(values[i])
-        print("values", values, "repeat", repeat)
+        #print("values", values, "repeat", repeat)
         yield values
         i_rows += 1
         previous = values
