@@ -98,6 +98,8 @@ def ziplus(*iterables, defaults=None, debug=False):
     n_items = len(iterables)
     if defaults is None:
         defaults = (StopIteration,) * n_items
+    if defaults in (Previous, Repeat):
+        defaults = (defaults,) * n_items
     if not isinstance(defaults, Sequence):
         raise ValueError("defaults expects a Sequence but found {:}"
                          .format(type(defaults).__name__))
@@ -109,7 +111,8 @@ def ziplus(*iterables, defaults=None, debug=False):
     n_stopped = 0
     stopped = [False] * n_items
     i_rows = 0
-    repeat = ([],) * n_items if any(i is Repeat for i in defaults) else None
+    repeat = tuple([] for i in items) if any(i is Repeat for i in defaults) \
+            else None
     values = []
     for i in i_items:
         if stopped[i] is False:
@@ -132,6 +135,7 @@ def ziplus(*iterables, defaults=None, debug=False):
             raise defaults[i]
         values.append(None if defaults[i] in (Previous, Repeat) else
                       defaults[i])
+    print("values", values, "repeat", repeat, "first")
     while n_stopped < n_items:
         if debug:
             print('row {:d}, {:d} of {:d} stopped, values: {:s}'
@@ -140,6 +144,7 @@ def ziplus(*iterables, defaults=None, debug=False):
             for i in i_items:
                 if defaults[i] is Repeat:
                     repeat[i].append(values[i])
+        print("values", values, "repeat", repeat)
         yield values
         i_rows += 1
         previous = values
